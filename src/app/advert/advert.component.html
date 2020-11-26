@@ -1,0 +1,19 @@
+<div class="card" style="width: 18rem; margin: 20px; display: inline-block;">
+    <div class="card-body">
+        <h5 class="card-title">Advert title: {{advert.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Advert Category: {{advert.category}}</h6>
+        <p class="card-text">{{advert.description}}</p>
+        <p class="card-text">{{advert.type}}</p>
+        <ng-container *ngIf="loggedUser.role ==='User'">
+            <button class="btn btn-primary" (click)="advertLiked.emit(advert)">Like <i class="fa fa-thumbs-up"></i></button>
+            <p class="card-text">{{advert.likesNumbers}}</p>
+        
+        </ng-container>
+        <ng-container *ngIf="loggedUser.id === advert.createdBy && user.role === 'Organisation'">
+<a [routerLink]="['/adverts', 'edit', advert.id]" class="card-link">Edit</a>
+<a  class="card-link" (click)="advertDeleted.emit(advert.id)">Delete</a>
+        </ng-container>
+        
+        
+    </div>
+</div>

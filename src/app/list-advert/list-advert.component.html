@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md" >
+            <h1>List of adverts</h1>
+            
+            <ng-container *ngFor="let advert of advertsList" >
+<app-advert 
+[advert] = "advert"
+(advertDeleted)="onAdvertDelete($event)"
+(advertLiked)="onAdvertLiked($event)"
+></app-advert>
+            </ng-container>
+            <ng-container *ngIf="hasLoggedIn && user.role === 'Organisation'"> 
+<a role="button" name="addAdvert" class="btn btn-primary" routerLink="createAdvert">Create Advert</a>
+            </ng-container>
+
+
+
+        </div>
+
+
+
+    </div>
+</div>

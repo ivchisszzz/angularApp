@@ -1,0 +1,51 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <form #form="ngForm" (ngSubmit)="onSubmit()">   
+                    <h1>{{ user.id ? "Edit User" : "Registration" }}</h1>
+                <p *ngIf="errorMsg" class="text-danger text-center">{{errorMsg}}</p>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" aria-describedby="nameHelp" placeholder="Enter username"
+                            name="username" [(ngModel)]="user.username" #usernameControl="ngModel" required>
+                            <small *ngIf="usernameControl.touched && usernameControl.invalid" class="text-danger">The field is required</small>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail">Email</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email" #emailControl="ngModel" required>
+                        <small *ngIf="emailControl.touched && emailControl.invalid" class="text-danger">The field is required</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password" #passwordControl="ngModel" required>
+                        <small *ngIf="passwordControl.touched && passwordControl.invalid" class="text-danger">The field is required</small>
+                    </div>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="inputGroupSelect02"[(ngModel)]="user.role" #roleControl="ngModel" name="role" required>
+                        <option *ngFor="let role of roles">{{role}}</option>
+                        <small *ngIf="roleControl.touched && roleControl.invalid" class="text-danger">The field is required</small>
+                       
+                    </select>
+                    <div class="input-group-append">
+                        <label class="input-group-text" for="inputGroupSelect02">User Roles</label>
+                    </div>
+                </div>
+
+
+                    <button type="submit" name="login" class="btn btn-primary">{{ user.id ? "Update" : "Register" }}</button>
+                    <button type="submit" name="login" class="btn btn-primary" style="margin-left: 20px;" *ngIf="user.id" (click)="onDelete()">Delete</button>
+                    
+
+
+
+
+                </form>
+            </div>
+
+
+
+        </div>
+     </div>
+

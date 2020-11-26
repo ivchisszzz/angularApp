@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <form #form="ngForm" (ngSubmit)="onSubmit()">
+                <h1>{{advert.id ? "Update Advert" : "Create Advert"}}</h1>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Title</label>
+                    <input type="text" class="form-control" aria-describedby="nameHelp" placeholder="Enter title"
+                        name="title" [(ngModel)]="advert.title" #titleControl="ngModel" required>
+                        <small *ngIf="titleControl.touched && titleControl.invalid" class="text-danger">The field is required</small>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail">Description</label>
+                    <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="advert.description" #descriptionControl="ngModel" required >
+                    <small *ngIf="descriptionControl.touched && descriptionControl.invalid" class="text-danger">The field is required</small>
+                </div>
+
+
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="advert.type" #typeControl="ngModel" name="type" required>
+                        <option *ngFor="let type of types">{{type}}</option>
+                
+                    </select>
+                    <div class="input-group-append">
+                        <label class="input-group-text" for="inputGroupSelect02">Advert Types</label>
+                    </div>
+                    <small *ngIf="typeControl.touched && typeControl.invalid" class="text-danger">The field is required</small>
+                </div>
+
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="advert.category" #categoryControl="ngModel" name="category" required>
+                        <option *ngFor="let category of categories" >{{category}}</option>
+                       
+                    </select>
+                    <div class="input-group-append">
+                        <label class="input-group-text" for="inputGroupSelect02">Categories</label>
+                    </div>
+                    <small *ngIf="categoryControl.touched && categoryControl.invalid" class="text-danger">The field is required</small>
+                </div>
+
+
+                <button type="submit" name="login" class="btn btn-primary">{{advert.id ? "Update" : "Create"}}</button>
+
+
+
+
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
